@@ -4,11 +4,16 @@ A simple calendar application that allows a user to save events for each hour of
 
 Project link: 
 
-Built With
+Built With:
+
 HTML
+
 CSS
+
 JavaScript
+
 Jquery
+
 Bootstrap
-moment.js library for Date and Time
-Website
+
+moment.js library 
