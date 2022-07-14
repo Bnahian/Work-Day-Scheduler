@@ -91,7 +91,7 @@ $("#currentDay").text(currentDate);
 //load schedule on page load
 loadSchedule();
 
-//Audit schedule in every 15 mins
+
 setInterval(function () {
     $(".row").each(function(index, el) {
       auditSchedule(el);
