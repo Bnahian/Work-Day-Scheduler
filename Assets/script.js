@@ -9,11 +9,11 @@ var auditSchedule = function(rowEl) {
     var t = past.format('LTS');
     
     // get current time
-    var prtime = moment().format('LTS');
+    var presenttime = moment().format('LTS');
     var textEl = $(rowEl).find("textarea");
 
     var a = moment(t,'hh:mm:ss a');
-    var b = moment(prtime, 'hh:mm:ss a');
+    var b = moment(presenttime, 'hh:mm:ss a');
     if(a.isAfter(b,'hours'))
     {
         $(textEl).addClass("future"); 
@@ -53,30 +53,30 @@ $(".row").on("click", "button", function() {
     var activityText = $(this).prev().val().trim();
    
     var parentrowId = $(this).closest(".row").attr("id");
-    // //Edit schedule logic
-    // var getSchedule = localStorage.getItem("schedule");
+    //Edit schedule logic
+    var getSchedule = localStorage.getItem("schedule");
     
-    // if (getSchedule!== null)
-    // {
-    //     getSchedule = JSON.parse(getSchedule);
-    //     for(var i=0;i<getSchedule.length;i++)
-    //     {
-    //         scheduleNew[i]=getSchedule[i];
-    //         var splitstr=scheduleNew[i].split("-");
-    //         if(splitstr[0] === parentrowId)
-    //         {
-    //             schedule.splice(i,1);
-    //             flag = true;
-    //             break;
-    //         }
-    //     }  
-    //     if(flag===true)
-    //     {
-    //         localStorage.clear();
-    //         localStorage.setItem("schedule",JSON.stringify(schedule));
-    //     }      
+    if (getSchedule!== null)
+    {
+        getSchedule = JSON.parse(getSchedule);
+        for(var i=0;i<getSchedule.length;i++)
+        {
+            scheduleNew[i]=getSchedule[i];
+            var splitstr=scheduleNew[i].split("-");
+            if(splitstr[0] === parentrowId)
+            {
+                schedule.splice(i,1);
+                flag = true;
+                break;
+            }
+        }  
+        if(flag===true)
+        {
+            localStorage.clear();
+            localStorage.setItem("schedule",JSON.stringify(schedule));
+        }      
           
-    // }
+    }
 
     var localstr = parentrowId+"-"+activityText;
     schedule.push(localstr);
