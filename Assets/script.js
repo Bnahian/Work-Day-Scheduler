@@ -26,7 +26,7 @@ var auditSchedule = function(rowEl) {
     }    
   };
 
-//Load all schedules from localstorage
+//Load all items from localstorage
 var loadSchedule = function(){
     var getSchedule = localStorage.getItem("schedule");
     
@@ -46,37 +46,37 @@ var loadSchedule = function(){
     });
 };
 
-//Get the text and parent id on click of Save button
+//function to get text ids
 $(".row").on("click", "button", function() {
     var flag = false;
     var scheduleNew = [];
     var activityText = $(this).prev().val().trim();
    
     var parentrowId = $(this).closest(".row").attr("id");
-    //Edit schedule logic
-    var getSchedule = localStorage.getItem("schedule");
+    // //Edit schedule logic
+    // var getSchedule = localStorage.getItem("schedule");
     
-    if (getSchedule!== null)
-    {
-        getSchedule = JSON.parse(getSchedule);
-        for(var i=0;i<getSchedule.length;i++)
-        {
-            scheduleNew[i]=getSchedule[i];
-            var splitstr=scheduleNew[i].split("-");
-            if(splitstr[0] === parentrowId)
-            {
-                schedule.splice(i,1);
-                flag = true;
-                break;
-            }
-        }  
-        if(flag===true)
-        {
-            localStorage.clear();
-            localStorage.setItem("schedule",JSON.stringify(schedule));
-        }      
+    // if (getSchedule!== null)
+    // {
+    //     getSchedule = JSON.parse(getSchedule);
+    //     for(var i=0;i<getSchedule.length;i++)
+    //     {
+    //         scheduleNew[i]=getSchedule[i];
+    //         var splitstr=scheduleNew[i].split("-");
+    //         if(splitstr[0] === parentrowId)
+    //         {
+    //             schedule.splice(i,1);
+    //             flag = true;
+    //             break;
+    //         }
+    //     }  
+    //     if(flag===true)
+    //     {
+    //         localStorage.clear();
+    //         localStorage.setItem("schedule",JSON.stringify(schedule));
+    //     }      
           
-    }
+    // }
 
     var localstr = parentrowId+"-"+activityText;
     schedule.push(localstr);
@@ -84,17 +84,17 @@ $(".row").on("click", "button", function() {
      
  });
 
-//Set current date using momentjs
-var todayDate = moment().format("dddd,  MMMM Do");
-$("#currentDay").text(todayDate);
+//Set current date 
+var currentDate = moment().format("dddd,  MMMM Do");
+$("#currentDay").text(currentDate);
 
 //load schedule on page load
 loadSchedule();
 
-//Audit schedule in every 15 mins
-setInterval(function () {
-    $(".row").each(function(index, el) {
-      auditSchedule(el);
-      window.location.reload();
-    });
-  }, 900000);
+// //Audit schedule in every 15 mins
+// setInterval(function () {
+//     $(".row").each(function(index, el) {
+//       auditSchedule(el);
+//       window.location.reload();
+//     });
+//   }, 900000);
